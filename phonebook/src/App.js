@@ -33,6 +33,7 @@ const App = () => {
     
     const isEqual = persons.find(p=> p.name === newName);
     const isNumberEqual = persons.find(p=> p.number === newNumber);
+
     try {
       if(!newName || !newNumber){
         alert("Try again, please");  
@@ -69,6 +70,15 @@ const App = () => {
               {
                 setSuccessfulMessage(null);
               },5000);
+        }).catch(error => {
+
+         const errorLog = Object.values(error.response.data).join('\n');
+          console.log(errorLog)
+          setErrorMessage(`${errorLog}`);
+  
+          setTimeout(()=>{
+            setErrorMessage(null);
+          },5000)
         })
     }
 
